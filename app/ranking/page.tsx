@@ -64,7 +64,7 @@ async function getRankedProducts(
   let productQuery = supabase
     .from('products')
     .select('*')
-    .in('id', [...statsMap.keys()])
+    .in('id', Array.from(statsMap.keys()))
 
   if (category) productQuery = productQuery.eq('category', category)
 
