@@ -238,7 +238,7 @@ export default async function ProductPage({ params, searchParams }: ProductPageP
               Find stores and retailers carrying {product.brand} near you.
             </p>
             <a
-              href={`https://www.google.com/maps/search/${product.brand.replace(/\s+/g, '+')}+${product.name.replace(/\s+/g, '+')}+UAE`}
+              href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(`${product.brand} ${product.name} UAE`)}`}
               target="_blank"
               rel="noopener noreferrer"
               className="btn-primary w-full justify-center"
