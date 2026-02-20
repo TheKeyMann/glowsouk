@@ -2,7 +2,7 @@ import { notFound } from 'next/navigation'
 import Image from 'next/image'
 import Link from 'next/link'
 import { Suspense } from 'react'
-import { ArrowLeft, ShoppingBag } from 'lucide-react'
+import { ArrowLeft, ShoppingBag, MapPin } from 'lucide-react'
 import { createClient } from '@/lib/supabase/server'
 import StarRating from '@/components/StarRating'
 import ReviewCard from '@/components/ReviewCard'
@@ -228,14 +228,33 @@ export default async function ProductPage({ params, searchParams }: ProductPageP
             )}
           </div>
 
-          <div className="mt-auto flex flex-wrap gap-3">
+          {/* Where to Buy in UAE */}
+          <div className="bg-glowsouk-cream rounded-2xl p-4 mb-4">
+            <div className="flex items-center gap-2 mb-3">
+              <MapPin className="w-4 h-4 text-glowsouk-rose" />
+              <h3 className="font-semibold text-glowsouk-dark text-sm">Where to Buy in UAE</h3>
+            </div>
+            <p className="text-xs text-glowsouk-dark-muted mb-3">
+              Find stores and retailers carrying {product.brand} near you.
+            </p>
+            <a
+              href={`https://www.google.com/maps/search/${product.brand.replace(/\s+/g, '+')}+${product.name.replace(/\s+/g, '+')}+UAE`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn-primary w-full justify-center"
+            >
+              <MapPin className="w-4 h-4" /> Find Stores in UAE
+            </a>
+          </div>
+
+          <div className="flex flex-wrap gap-3">
             <a
               href={`https://www.google.com/search?q=${encodeURIComponent(`${product.brand} ${product.name} buy`)}`}
               target="_blank"
               rel="noopener noreferrer"
-              className="btn-primary"
+              className="btn-ghost text-sm"
             >
-              <ShoppingBag className="w-4 h-4" /> Find Where to Buy
+              <ShoppingBag className="w-4 h-4" /> Buy Online
             </a>
             <Link href="/products/submit" className="btn-ghost text-sm">
               + Submit a product
